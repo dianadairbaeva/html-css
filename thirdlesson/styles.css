@@ -1,0 +1,89 @@
+/* .page {
+    width: 1000px;
+    margin: 20px auto;
+    
+}
+
+.header {
+    padding: 20px;
+    background-color: #eee;
+}
+
+.content {
+    display: flex;
+}
+
+.sidebar {
+    background-color: white;
+    padding: 20px;
+    width: 200px;
+}
+
+.main {
+    background-color: azure;
+    padding: 20px;
+    width: 400px;
+}
+
+.footer {
+    padding: 20px;
+    background-color: antiquewhite;
+}
+
+.header p {
+    color: blue;
+}
+
+.main img {
+    width: 200px;
+    height: 300px;
+}
+
+.main {
+    display: flex;
+    gap: 20px;
+}
+.card1 {
+    flex: 1;
+
+} */
+
+body {
+    margin: 0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background: linear-gradient(to right, pink, lightblue);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    padding: 30px;
+
+}
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.card {
+    width: 220px;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    
+    
+
+}
+
+.card img {
+    width: 100%;
+}
+
+
+
+
+
