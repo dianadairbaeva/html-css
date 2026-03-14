@@ -1,0 +1,17 @@
+body {
+  background-image: url(https://static.vecteezy.com/system/resources/thumbnails/047/422/343/small/a-landscape-of-meadows-and-mountains-at-sunset-with-4k-resolution-for-desktop-or-pc-wallpaper-illustration-free-vector.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  height: 100vh;
+  align-items: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header {
+  width: 50%;
+  background-color: white;
+}/*# sourceMappingURL=styles.css.map */
