@@ -122,3 +122,69 @@
 
 // let joined = words.join(", ")
 // console.log(joined)
+
+
+
+
+// Часть 1
+// let numbers = [2, 5, 7, 12, 0, -3, 15]; 
+
+// let multiplied = numbers.map(num => num * 3);
+// console.log("Умноженные на 3:", multiplied);
+
+// let greaterThan10 = multiplied.filter(num => num > 10);
+// console.log("Больше 10:", greaterThan10);
+
+// let divisibleBy5 = multiplied.find(num => num % 5 === 0);
+// console.log("Первое, делящееся на 5:", divisibleBy5);
+
+// let hasNegative = multiplied.some(num => num < 0);
+// console.log("Есть ли число < 0:", hasNegative);
+
+// let allEven = multiplied.every(num => num % 2 === 0);
+// console.log("Все числа четные:", allEven);
+
+// let sum = multiplied.reduce((acc, num) => acc + num, 0);
+// console.log("Сумма всех чисел:", sum);
+
+// Часть 2
+// let words = ["apple", "banana", "kiwi", "strawberry", "melon"];
+
+// let upperCaseWords = words.map(word => word.toUpperCase());
+// console.log("В верхнем регистре:", upperCaseWords);
+
+// let longerThan5 = words.filter(word => word.length > 5);
+// console.log("Длиннее 5 символов:", longerThan5);
+
+// let longerThan7 = words.find(word => word.length > 7);
+// console.log("Первое слово >7 символов:", longerThan7);
+
+
+// Часть 3
+// let users = [
+//   { name: "Ali", age: 17, isActive: true },
+//   { name: "Dana", age: 22, isActive: false },
+//   { name: "Aruzhan", age: 19, isActive: true },
+//   { name: "Maksat", age: 15, isActive: true }
+// ];
+
+// let names = users.map(user => user.name);
+// console.log("Имена пользователей:", names);
+
+// let activeUsers = users.filter(user => user.isActive);
+// console.log("Активные пользователи:", activeUsers);
+
+// let olderThan18 = users.filter(user => user.age > 18);
+// console.log("Пользователи старше 18:", olderThan18);
+
+// let firstInactive = users.find(user => !user.isActive);
+// console.log("Первый неактивный пользователь:", firstInactive);
+
+// let hasUnder16 = users.some(user => user.age < 16);
+// console.log("Есть ли пользователь <16:", hasUnder16);
+
+// let allActive = users.every(user => user.isActive);
+// console.log("Все пользователи активны:", allActive);
+
+// let totalAge = users.reduce((acc, user) => acc + user.age, 0);
+// console.log("Сумма возрастов:", totalAge);
