@@ -328,3 +328,62 @@
 //         result.textContent = "Привет, " + name + "!";
 //     }
 // });
+
+// дз inputы делегирование
+// 1) 
+// const nameInput = document.getElementById("nameInput");
+// const sendName = document.getElementById("sendName");
+// const nameResult = document.getElementById("nameResult");
+// const nameError = document.getElementById("nameError");
+
+// sendName.addEventListener("click", () => {
+//     const name = nameInput.value.trim();
+
+//     nameError.textContent = "";
+//     nameResult.textContent = "";
+
+//     if (name === "") {
+//         nameError.textContent = "Введите имя";
+//         return;
+//     }
+
+//     if (name.length < 2) {
+//         nameError.textContent = "Имя слишком короткое";
+//         return;
+//     }
+
+//     nameResult.textContent = "Здравствуйте, " + name + "!";
+//     nameInput.value = "";
+// });
+
+
+// 2)
+// const commentInput = document.getElementById("commentInput");
+// const sendComment = document.getElementById("sendComment");
+// const commentResult = document.getElementById("commentResult");
+// const commentError = document.getElementById("commentError");
+
+// sendComment.addEventListener("click", () => {
+//     const comment = commentInput.value.trim();
+
+//     commentError.textContent = "";
+//     commentResult.textContent = "";
+
+//     if (comment === "") {
+//         commentError.textContent = "Комментарий не может быть пустым";
+//         return;
+//     }
+
+//     if (comment.length < 5) {
+//         commentError.textContent = "Комментарий слишком короткий";
+//         return;
+//     }
+
+//     if (comment.length > 50) {
+//         commentError.textContent = "Комментарий слишком длинный";
+//         return;
+//     }
+
+//     commentResult.textContent = comment;
+//     commentInput.value = "";
+// });
