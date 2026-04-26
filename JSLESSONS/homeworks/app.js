@@ -387,3 +387,96 @@
 //     commentResult.textContent = comment;
 //     commentInput.value = "";
 // });
+
+// localstorage дз
+// 1)
+const colorInput = document.getElementById("colorInput");
+const saveColorBtn = document.getElementById("saveColorBtn");
+const colorResult = document.getElementById("colorResult");
+
+saveColorBtn.addEventListener("click", () => {
+    localStorage.setItem("color", colorInput.value);
+    showColor();
+});
+
+function showColor() {
+    const saved = localStorage.getItem("color");
+    if (saved) {
+        colorResult.textContent = "Ваш любимый цвет: " + saved;
+    }
+}
+
+showColor();
+
+
+// 2)
+let visits = localStorage.getItem("visits");
+
+if (visits === null) {
+    visits = 1;
+} else {
+    visits = Number(visits) + 1;
+}
+
+localStorage.setItem("visits", visits);
+
+document.getElementById("visitCount").textContent =
+    "Вы открыли страницу " + visits + " раз";
+
+
+// 3)
+const note = document.getElementById("note");
+const saveNoteBtn = document.getElementById("saveNoteBtn");
+
+saveNoteBtn.addEventListener("click", () => {
+    localStorage.setItem("note", note.value);
+});
+
+function loadNote() {
+    const saved = localStorage.getItem("note");
+    if (saved) {
+        note.value = saved;
+    }
+}
+
+loadNote();
+
+
+// 4)
+const welcome = document.getElementById("welcome");
+const hideBtn = document.getElementById("hideBtn");
+
+hideBtn.addEventListener("click", () => {
+    welcome.style.display = "none";
+    localStorage.setItem("hidden", "yes");
+});
+
+if (localStorage.getItem("hidden") === "yes") {
+    welcome.style.display = "none";
+}
+
+
+// 5)
+const itemInput = document.getElementById("itemInput");
+const addItemBtn = document.getElementById("addItemBtn");
+const list = document.getElementById("list");
+
+let items = JSON.parse(localStorage.getItem("items")) || [];
+
+addItemBtn.addEventListener("click", () => {
+    items.push(itemInput.value);
+    localStorage.setItem("items", JSON.stringify(items));
+    showList();
+});
+
+function showList() {
+    list.innerHTML = "";
+
+    items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+    });
+}
+
+showList();
