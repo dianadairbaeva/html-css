@@ -188,3 +188,143 @@
 
 // let totalAge = users.reduce((acc, user) => acc + user.age, 0);
 // console.log("Сумма возрастов:", totalAge);
+
+// дз DOM, BOM
+// 1) 
+// const title = document.getElementById("title")
+// const texts = document.getElementsByClassName("text")
+// const p = document.getElementsByTagName("p")
+// const firstButton = document.querySelector("button")
+// const allParagraphs = document.querySelectorAll("p")
+
+// console.log(title)
+// console.log(texts)
+// console.log(p)
+// console.log(firstButton)
+// console.log(allParagraphs)
+
+
+// 2)
+// const title = document.getElementById("title")
+// const button = document.getElementById("changeBtn")
+// const div = document.getElementById("content")
+
+// button.addEventListener("click", () => {
+//     title.textContent = "DOM работает!"
+// })
+
+// div.innerHTML = "<b>это жирный текст</b>"
+
+// 3)
+// const img = document.getElementById("img");
+// const link = document.getElementById("link");
+// const changeBtn = document.getElementById("changeBtn");
+
+// changeBtn.addEventListener("click", () => {
+//     img.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi7O0rnflBJFMrKti916_CVbY7Uj38l7kjpw&s";
+//     img.alt = "Новая картинка";
+
+//     link.href = "https://google.com";
+//     link.textContent = "Новая ссылка";
+// })
+
+// 4)
+// const title = document.getElementById("title");
+// const texts = document.querySelectorAll(".text");
+// const paintBtn = document.getElementById("paintBtn");
+
+// paintBtn.addEventListener("click", () => {
+//     title.style.color = "white";
+//     title.style.fontSize = "30px";
+//     title.style.background = "purple";
+
+//     texts.forEach(el => {
+//         el.style.color = "blue";
+//         el.style.fontSize = "20px";
+//     });
+// })
+
+// 5)
+// const message = document.getElementById("message");
+// const themeBtn = document.getElementById("themeBtn");
+
+// themeBtn.addEventListener("click", () => {
+//     message.classList.toggle("dark");
+// });
+
+
+// message.classList.add("dark");
+// message.classList.remove("dark");
+// console.log(message.classList.contains("dark"));
+
+
+// 6)
+// let count = 0;
+// const counter = document.getElementById("counter");
+
+// document.getElementById("plus").addEventListener("click", () => {
+//     count++;
+//     counter.textContent = count;
+// });
+
+// document.getElementById("minus").addEventListener("click", () => {
+//     count--;
+//     counter.textContent = count;
+// });
+
+
+// 7) 
+// const password = document.getElementById("password");
+// const togglePass = document.getElementById("togglePass");
+
+// togglePass.addEventListener("click", () => {
+//     if (password.type === "password") {
+//         password.type = "text";
+//         togglePass.textContent = "Скрыть";
+//     } else {
+//         password.type = "password";
+//         togglePass.textContent = "Показать";
+//     }
+// });
+
+
+// 8) 
+// const box = document.getElementById("box");
+// const clickBtn = document.getElementById("clickBtn");
+
+// box.addEventListener("mouseover", () => {
+//     box.style.background = "yellow";
+// });
+
+// box.addEventListener("mouseout", () => {
+//     box.style.background = "lightgray";
+// });
+
+// clickBtn.addEventListener("click", () => {
+//     alert("Кнопка нажата");
+// });
+
+
+// 9) 
+// const inputText = document.getElementById("inputText");
+// const output = document.getElementById("output");
+
+// inputText.addEventListener("input", () => {
+//     output.textContent = "Вы ввели: " + inputText.value;
+// });
+
+
+// 10)
+// const nameInput = document.getElementById("nameInput");
+// const sendBtn = document.getElementById("sendBtn");
+// const result = document.getElementById("result");
+
+// sendBtn.addEventListener("click", () => {
+//     const name = nameInput.value.trim();
+
+//     if (name === "") {
+//         result.textContent = "Введите имя";
+//     } else {
+//         result.textContent = "Привет, " + name + "!";
+//     }
+// });
