@@ -17,7 +17,7 @@ const goToRegisterBtn = document.querySelector("#goToRegisterBtn")
 
 // Переменные магазина
 const shopScreen = document.querySelector("#shopScreen")
-const userInfo = document.querySelector("#shopScreen")
+const userInfo = document.querySelector("#userInfo")
 const logoutBtn = document.querySelector("#logoutBtn")
 const productList = document.querySelector("#productList")
 const cartList = document.querySelector("#cartList")
@@ -57,7 +57,7 @@ function saveUser(user){
 }
 
 function getUser(){
-    const user = localStorage.get("user")
+    const user = localStorage.getItem("user")
 
     if (user === null){
         return null
@@ -102,6 +102,194 @@ registerForm.addEventListener("submit", (event) =>{
 
     saveUser(user)
     registerForm.reset()
-    showShopScreen()
+    showLoginScreen()
 })
 
+// Логин
+
+loginForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+
+    const email = loginEmail.value.trim()
+    const password = loginPassword.value.trim()
+
+    loginError.textContent = ""
+
+    const savedUser = getUser()
+
+    if (savedUser === null){
+        loginError.textContent = "Сначала нужно зарегистрироваться"
+        loginError.style.color = "red"
+        return
+    }
+
+    if (email !== savedUser.email){
+        loginError.textContent = "Неверный логин"
+        loginError.style.color = "red"
+        return
+    }
+
+    if(password !== savedUser.password){
+        loginError.textContent = "Неверный пароль"
+        loginError.style.color = "red"
+    }
+    localStorage.setItem("isAuth", "true")
+
+    loginForm.reset()
+
+    startShop()
+})
+
+// Магазин
+
+const products = [
+    {
+        id:1,
+        title: "ноутбук",
+        price: 350000
+    },
+
+    {
+        id:2,
+        title: "смартфон",
+        price: 210000
+    },
+
+    {
+        id:3,
+        title: "клавиатура",
+        price: 25000
+    }
+]
+
+// Корзина
+let cart = []
+
+// Имитация запросов к серверу через promise
+function fakeFetchProducts(){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(products)
+        }, 2000)
+    })
+}
+
+// Загрузка товаров async/await
+async function loadProducts(){
+    productList.textContent = "Загрузка товаров..."
+
+    const loadedProducts = await fakeFetchProducts()
+
+    renderProducts(loadedProducts)
+}
+
+// Рендер товаров
+function renderProducts(productsArray){
+    productList.innerHTML = ""
+
+    productsArray.forEach((product) => {
+        productList.innerHTML += `
+        <div> 
+            <h4>${product.title}</h4>
+            <p>цена ${product.price} тг </p>
+            <button class = "addToCartBtn" data-id = "${product.id}">ДОбавить корзину</button>
+        </div>
+        <hr>
+        `
+    })
+}
+
+function startShop(){
+    const savedUser = getUser()
+
+    if(savedUser !== null){
+        userInfo.textContent = `Пользователь: ${savedUser.name}`
+    }
+    showShopScreen()
+    loadCartFromStorage()
+    renderCart()
+    loadProducts()
+}
+
+// Сохранение корзины в LS
+function saveCartToStorage(){
+    localStorage.setItem("cart", JSON.stringify(cart))
+}
+
+// Загрузка из Ls
+function loadCartFromStorage(){
+    const savedCart = localStorage.getItem("cart")
+
+    if(savedCart === null){
+        cart = []
+        return
+    }
+    cart = JSON.parse(savedCart)
+}
+
+// Добавление в корзину
+productList.addEventListener("click", (event) => {
+    if(event.target.classList.contains("addToCartBtn")){
+        const productId = Number(event.target.dataset.id)
+
+        const product = products.find((item) => {
+            return item.id === productId
+        })
+        cart.push(product)
+        saveCartToStorage()
+        renderCart()
+    }
+})
+
+// Рендер корзины
+function renderCart(){
+    cartList.innerHTML = ""
+
+    if(cart.length === 0){
+        cartList.textContent = "корзина пустая"
+        cartTotal.textContent = "итого 0 тг"
+        return
+    }
+
+    cart.forEach((product, index) => {
+        cartList.innerHTML += `
+        <div>
+            <span>${product.title} - ${product.price} тг </span>
+            <button class = "removeFromCartBtn" data-index = "${index}">удалить</button>
+        </div>
+        `
+    })
+
+    const total = cart.reduce((sum, product) => {
+        return sum + product.price
+    }, 0)
+    cartTotal.textContent = `Итого ${total} тг`
+}
+
+// Удаление
+cartList.addEventListener("click", (event) => {
+    if(event.target.classList.contains("removeFromCartBtn")){
+        const index = Number(event.target.dataset.index)
+        cart.splice(index,1)
+        saveCartToStorage()
+        renderCart()
+    }
+})
+
+// Кнопка выйти
+logoutBtn.addEventListener("click", () =>{
+    localStorage.removeItem("isAuth")
+    showLoginScreen()
+})
+
+// Проверка авторизации
+function checkAuth(){
+    const isAuth = localStorage.getItem("isAuth")
+    if(isAuth === "true"){
+        startShop()
+    }
+    else{
+        showRegisterScreen()
+    }
+}
+checkAuth()
