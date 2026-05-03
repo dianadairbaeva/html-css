@@ -178,7 +178,7 @@ async function loadProducts(){
         renderProducts(data.products)
         showScreen("products")
     }catch(e){
-        productsBlock.innerHTML = "Ошибка загрузки"
+        productsBlock.innerHTML = "Не удалось загрузить товары..."
     }
 }
 
@@ -213,6 +213,7 @@ backtoProfileBtn.addEventListener("click", function(){
 
 // 5) Экран одного товара
 async function loadProductDetail(id){
+    try{
     const response = await fetch(`${API_URL}/products/${id}`)
     const product = await response.json()
 
@@ -220,15 +221,25 @@ async function loadProductDetail(id){
         <img src="${product.thumbnail}">
         <h2>${product.title}</h2>
         <p>${product.description}</p>
-        <p>${product.price}$</p>
-        <p>⭐ ${product.rating}</p>
+        <p><strong>Категория:</strong> ${product.category}</p>
+        <p><strong>Бренд:</strong> ${product.brand}</p>
+        <p><strong>Цена:</strong> $${product.price}</p>
+        <p><strong>Скидка:</strong> ${product.discountPercentage}%</p>
+        <p><strong>Рейтинг:</strong> ⭐ ${product.rating}</p>
+        <p><strong>На складе:</strong> ${product.stock}</p>
     `
 
     showScreen("detail")
+    }catch(e){
+        productDetailBlock.innerHTML = "Не удалось загрузить товар..."
+    }
 }
 
-// Возвращение обратно ко всем товарам
+// 7) Возвращение обратно ко всем товарам
 backToProductsBtn.addEventListener("click", function(){
     showScreen("products")
 })
+
+
+
 
