@@ -390,93 +390,339 @@
 
 // localstorage дз
 // 1)
-const colorInput = document.getElementById("colorInput");
-const saveColorBtn = document.getElementById("saveColorBtn");
-const colorResult = document.getElementById("colorResult");
+// const colorInput = document.getElementById("colorInput");
+// const saveColorBtn = document.getElementById("saveColorBtn");
+// const colorResult = document.getElementById("colorResult");
 
-saveColorBtn.addEventListener("click", () => {
-    localStorage.setItem("color", colorInput.value);
-    showColor();
-});
+// saveColorBtn.addEventListener("click", () => {
+//     localStorage.setItem("color", colorInput.value);
+//     showColor();
+// });
 
-function showColor() {
-    const saved = localStorage.getItem("color");
-    if (saved) {
-        colorResult.textContent = "Ваш любимый цвет: " + saved;
-    }
-}
+// function showColor() {
+//     const saved = localStorage.getItem("color");
+//     if (saved) {
+//         colorResult.textContent = "Ваш любимый цвет: " + saved;
+//     }
+// }
 
-showColor();
+// showColor();
 
 
 // 2)
-let visits = localStorage.getItem("visits");
+// let visits = localStorage.getItem("visits");
 
-if (visits === null) {
-    visits = 1;
-} else {
-    visits = Number(visits) + 1;
-}
+// if (visits === null) {
+//     visits = 1;
+// } else {
+//     visits = Number(visits) + 1;
+// }
 
-localStorage.setItem("visits", visits);
+// localStorage.setItem("visits", visits);
 
-document.getElementById("visitCount").textContent =
-    "Вы открыли страницу " + visits + " раз";
+// document.getElementById("visitCount").textContent =
+//     "Вы открыли страницу " + visits + " раз";
 
 
-// 3)
-const note = document.getElementById("note");
-const saveNoteBtn = document.getElementById("saveNoteBtn");
+// // 3)
+// const note = document.getElementById("note");
+// const saveNoteBtn = document.getElementById("saveNoteBtn");
 
-saveNoteBtn.addEventListener("click", () => {
-    localStorage.setItem("note", note.value);
-});
+// saveNoteBtn.addEventListener("click", () => {
+//     localStorage.setItem("note", note.value);
+// });
 
-function loadNote() {
-    const saved = localStorage.getItem("note");
-    if (saved) {
-        note.value = saved;
-    }
-}
+// function loadNote() {
+//     const saved = localStorage.getItem("note");
+//     if (saved) {
+//         note.value = saved;
+//     }
+// }
 
-loadNote();
+// loadNote();
 
 
 // 4)
-const welcome = document.getElementById("welcome");
-const hideBtn = document.getElementById("hideBtn");
+// const welcome = document.getElementById("welcome");
+// const hideBtn = document.getElementById("hideBtn");
 
-hideBtn.addEventListener("click", () => {
-    welcome.style.display = "none";
-    localStorage.setItem("hidden", "yes");
-});
+// hideBtn.addEventListener("click", () => {
+//     welcome.style.display = "none";
+//     localStorage.setItem("hidden", "yes");
+// });
 
-if (localStorage.getItem("hidden") === "yes") {
-    welcome.style.display = "none";
-}
+// if (localStorage.getItem("hidden") === "yes") {
+//     welcome.style.display = "none";
+// }
 
 
 // 5)
-const itemInput = document.getElementById("itemInput");
-const addItemBtn = document.getElementById("addItemBtn");
-const list = document.getElementById("list");
+// const itemInput = document.getElementById("itemInput");
+// const addItemBtn = document.getElementById("addItemBtn");
+// const list = document.getElementById("list");
 
-let items = JSON.parse(localStorage.getItem("items")) || [];
+// let items = JSON.parse(localStorage.getItem("items")) || [];
 
-addItemBtn.addEventListener("click", () => {
-    items.push(itemInput.value);
-    localStorage.setItem("items", JSON.stringify(items));
-    showList();
-});
+// addItemBtn.addEventListener("click", () => {
+//     items.push(itemInput.value);
+//     localStorage.setItem("items", JSON.stringify(items));
+//     showList();
+// });
 
-function showList() {
-    list.innerHTML = "";
+// function showList() {
+//     list.innerHTML = "";
 
-    items.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        list.appendChild(li);
-    });
-}
+//     items.forEach(item => {
+//         const li = document.createElement("li");
+//         li.textContent = item;
+//         list.appendChild(li);
+//     });
+// }
 
-showList();
+// showList();
+
+// дз асинхрон(11 урок)
+// 1) 
+// const title = document.getElementById("title")
+// const btn = document.getElementById("btn")
+
+// btn.addEventListener("click", ()=>{
+//     title.textContent = "Новый заголовок"
+// })
+
+// 2) const text = document.getElementById("text")
+// const btn = document.getElementById("btn")
+
+// btn.addEventListener("click", ()=> {
+//     text.style.color = "red"
+// })
+
+// 3)
+// const box = document.getElementById("box")
+// const btn = document.getElementById("btn")
+
+// btn.addEventListener("click", () =>{
+//     box.style.backgroundColor = "blue"
+//     box.style.color = "white"
+//     box.style.padding = "20px"
+// })
+
+// 4)
+// const btn = document.getElementById("btn")
+
+// btn.addEventListener("click", () =>{
+//     btn.textContent = "Нажато"
+//     btn.style.backgroundColor = "green"
+//     btn.style.color = "white"
+//     btn.style.padding = "15px"
+// })
+
+// 5)
+// const nameInput = document.getElementById("nameInput")
+// const btn = document.getElementById("btn")
+// const result = document.getElementById("result")
+
+// btn.addEventListener("click", () => {
+//     result.textContent = `Привет, ${nameInput.value}`
+// })
+
+// 6)
+// const form = document.getElementById("form")
+// const result = document.getElementById("result")
+
+// form.addEventListener("submit", (e) => {
+//     e.preventDefault()
+//     result.textContent = `Ваш email: ${emailInput.value}`
+// })
+
+// 7)
+// const form = document.getElementById("form")
+// const nameInput = document.getElementById("nameInput")
+// const message = document.getElementById("message")
+
+// form.addEventListener("submit", (e) => {
+//     e.preventDefault()
+
+//     if(nameInput.value === ""){
+//         message.textContent = "Введите имя"
+//     } else {
+//         message.textContent = `Привет, ${nameInput.value}`
+//     }
+// })
+
+// 8)
+// const image = document.getElementById("image")
+// const btn = document.getElementById("btn")
+
+// btn.addEventListener("click", () => {
+//     image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRND7MzfQytXJRDJDCbbRyBwtIR-TIRKI2Uyg&s"
+// })
+
+// 9)
+// const text = document.getElementById("text")
+// const hideBtn = document.getElementById("hideBtn")
+// const showBtn = document.getElementById("showBtn")
+
+// hideBtn.addEventListener("click", () => {
+//     text.style.display = "none"
+// })
+
+// showBtn.addEventListener("click", () => {
+//     text.style.display = "block"
+// })
+
+// 10)
+// const name = document.getElementById("name")
+// const age = document.getElementById("age")
+// const btn = document.getElementById("btn")
+
+// btn.addEventListener("click", () => {
+//     name.textContent = "Dias"
+//     age.textContent = "21"
+
+//     name.style.color = "blue"
+//     age.style.fontSize = "20px"
+// })
+
+// 11)
+// const btn11 = document.getElementById("btn11")
+
+// function getData() {
+//    return new Promise((resolve) => {
+//        setTimeout(() => {
+//            resolve("Данные успешно загружены")
+//        }, 2000)
+//    })
+// }
+
+// btn11.addEventListener("click", async () => {
+//     const result = document.getElementById("result11")
+
+//     result.textContent = "Загрузка..."
+
+//     const data = await getData()
+
+//     result.textContent = data
+// })
+
+// 12)
+// const btn = document.getElementById("btn")
+
+// function getUser() {
+//    return new Promise((resolve) => {
+//        setTimeout(() => {
+//            resolve({
+//                name: "Aruzhan",
+//                age: 19
+//            })
+//        }, 1000)
+//    })
+// }
+
+// btn.addEventListener("click", async () => {
+//     const result = document.getElementById("result")
+
+//     result.textContent = "Загрузка..."
+
+//     const user = await getUser()
+
+//     result.textContent = `Пользователь: ${user.name}, возраст: ${user.age}`
+// })
+
+// 13)
+// const form = document.getElementById("form")
+// const passwordInput = document.getElementById("passwordInput")
+// const message = document.getElementById("message")
+
+// form.addEventListener("submit", (e) => {
+//     e.preventDefault()
+
+//     if(passwordInput.value.length < 6){
+//         message.textContent = "Пароль слишком короткий"
+//     } else {
+//         message.textContent = "Пароль подходит"
+//     }
+// })
+
+// 14)
+// const title = document.getElementById("title")
+// const description = document.getElementById("description")
+// const btn = document.getElementById("btn")
+
+
+// btn.addEventListener("click", () => {
+//     title.textContent = "Мой первый DOM сайт"
+//     description.textContent = "Я научился менять HTML через JavaScript"
+//     title.style.color = "purple"
+//     description.style.backgroundColor = "yellow"
+// })
+
+// 15)
+// const login = document.getElementById("loginInput")
+// const password = document.getElementById("passwordInput")
+// const message = document.getElementById("message")
+// const form = document.getElementById("form")
+
+// form.addEventListener("submit", (e) =>{
+//     e.preventDefault()
+
+//     if (login.value === "" || password.value === ""){
+//         message.textContent = "Заполните все поля"
+//     }
+//     else{
+//         message.textContent = "Вы успешно вошли"
+//     }
+// })
+
+// 16)
+// const counter = document.getElementById("counter")
+// const btn = document.getElementById("btn")
+
+// let count = 0
+// btn.addEventListener("click", () =>{
+//     count++
+//     counter.textContent = count
+// })
+
+// 17)
+// const text = document.getElementById("textInput")
+// const clearBtn = document.getElementById("clearBtn")
+
+// clearBtn.addEventListener("click", () => {
+//     text.value = ""
+// })
+
+// 18)
+// const form = document.getElementById('form');
+
+// form.addEventListener('submit', (e) => {
+//     e.preventDefault()
+    
+//     const msg = document.getElementById('message')
+//     message.textContent = "Данные сохранены"
+//     message.style.color = "green"
+// });
+
+// 19)
+// const btn = document.getElementById("btn")
+
+// btn.addEventListener("click", () => {
+//     productTitle.textContent = "Ноутбук"
+//     productPrice.textContent = "Цена: 250000 тг"
+//     productPrice.style.color = "red"
+// })
+
+// 20)
+// const form = document.getElementById("form")
+
+// form.addEventListener("submit", (e) => {
+//     e.preventDefault()
+
+//     if(nameInput.value === "" || emailInput.value === ""){
+//         message.textContent = "Заполните все поля"
+//     } else {
+//         message.textContent = `Спасибо за регистрацию, ${nameInput.value}`
+//         message.style.color = "green"
+//         title.textContent = "Регистрация успешна"
+//     }
+// })
