@@ -726,3 +726,81 @@
 //         title.textContent = "Регистрация успешна"
 //     }
 // })
+
+
+// дз (12 урок fetch)
+const loadBtn = document.getElementById("loadBtn");
+const productsDiv = document.getElementById("products");
+const searchInput = document.getElementById("searchInput");
+const cartDiv = document.getElementById("cart");
+
+let products = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function renderCart() {
+  cartDiv.innerHTML = "";
+  cart.forEach(item => {
+    const p = document.createElement("p");
+    p.textContent = item.name + " - " + item.price + "$";
+    cartDiv.appendChild(p);
+  });
+}
+
+renderCart();
+
+loadBtn.addEventListener("click", async () => {
+  try {
+    const res = await fetch("https://fakestoreapi.com/products");
+
+    if (!res.ok) {
+      throw new Error("Ошибка загрузки");
+    }
+
+    products = await res.json();
+    renderProducts(products);
+
+  } catch (error) {
+    productsDiv.innerHTML = "Ошибка: " + error.message;
+  }
+});
+
+function renderProducts(list) {
+  productsDiv.innerHTML = "";
+
+  list.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${product.image}">
+      <h3>${product.title}</h3>
+      <p>${product.price}$</p>
+      <p>${product.description.slice(0, 50)}...</p>
+      <button>В корзину</button>
+    `;
+
+    const btn = card.querySelector("button");
+
+    btn.addEventListener("click", () => {
+      cart.push({
+        name: product.title,
+        price: product.price
+      });
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    });
+
+    productsDiv.appendChild(card);
+  });
+}
+
+searchInput.addEventListener("input", () => {
+  const value = searchInput.value.toLowerCase();
+
+  const filtered = products.filter(p =>
+    p.title.toLowerCase().includes(value)
+  );
+
+  renderProducts(filtered);
+});
